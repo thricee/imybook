@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Security: only allow our own scripts, and data/images from Open Library -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self';
+                 img-src 'self' https://covers.openlibrary.org https://*.archive.org;
+                 connect-src https://openlibrary.org">
+  <title>iMyBook - Book Search</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to iMyBook</h1>
+    <p class="tagline">Your Reading Book Application</p>
+    <nav>
+      <a href="index.html" class="active">Book Search</a>
+      <a href="suggest.html">Book Suggestions</a>
+      <a href="reading-list.html">My Reading List</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Book Search</h2>
+    <p class="intro">Search the Open Library for any book, view its details and calculate how long it will take you to read.</p>
+
+    <!-- STEP 1: Search form -->
+    <section class="box">
+      <h3>1. Search for a book</h3>
+      <form id="searchForm" novalidate>
+        <div class="form-row">
+          <div class="field narrow">
+            <label for="searchType">Search by</label>
+            <select id="searchType">
+              <option value="title">Title</option>
+              <option value="author">Author</option>
+              <option value="any">Any keyword</option>
+            </select>
+          </div>
+          <div class="field wide">
+            <label for="searchText">Book title, author or keyword</label>
+            <input type="text" id="searchText" placeholder="e.g. Harry Potter" maxlength="100">
+            <small>Type at least 2 characters.</small>
+          </div>
+          <div>
+            <button type="submit" class="primary" id="searchBtn">Search</button>
+            <button type="button" id="clearBtn">Clear</button>
+          </div>
+        </div>
+      </form>
+      <div id="searchMessage" class="message"></div>
+      <p id="loading" class="loading">Searching books, please wait...</p>
+    </section>
+
+    <!-- STEP 2: Results (filled by JavaScript) -->
+    <section class="box hidden" id="resultsBox">
+      <h3 id="resultsTitle">Results</h3>
+      <div class="book-grid" id="results"></div>
+    </section>
+
+    <!-- STEP 3: Book details (filled by JavaScript) -->
+    <section class="box hidden" id="detailsBox">
+      <h3>2. Book details</h3>
+      <div class="details" id="details"></div>
+      <div id="addMessage" class="message"></div>
+    </section>
+
+    <!-- STEP 4: Reading time calculator -->
+    <section class="box hidden" id="calcBox">
+      <h3>3. Reading Time Calculator</h3>
+      <p>Find out how long this book will take you to read. Total pages comes from the API (you can change it).</p>
+      <form id="calcForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="calcPages">Total pages</label>
+            <input type="number" id="calcPages" min="1" max="10000" step="1">
+            <small>1 - 10000 pages</small>
+          </div>
+          <div class="field">
+            <label for="calcWordsPerPage">Words per page</label>
+            <input type="number" id="calcWordsPerPage" value="250" min="50" max="1000" step="1">
+            <small>Average novel = 250 words</small>
+          </div>
+          <div class="field">
+            <label for="calcSpeed">Reading speed</label>
+            <select id="calcSpeed">
+              <option value="150">Slow (150 words/min)</option>
+              <option value="200" selected>Average (200 words/min)</option>
+              <option value="250">Fast (250 words/min)</option>
+              <option value="350">Very fast (350 words/min)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="calcMinutes">Reading time per day</label>
+            <input type="number" id="calcMinutes" value="30" min="5" max="600" step="1">
+            <small>5 - 600 minutes</small>
+          </div>
+          <div>
+            <button type="submit" class="primary">Calculate</button>
+          </div>
+        </div>
+      </form>
+      <div id="calcMessage" class="message"></div>
+      <div id="calcResult"></div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 iMyBook
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

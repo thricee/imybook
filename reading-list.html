@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self';
+                 img-src 'self' https://covers.openlibrary.org https://*.archive.org;
+                 connect-src https://openlibrary.org">
+  <title>iMyBook - My Reading List</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to iMyBook</h1>
+    <p class="tagline">Your Reading Book Application</p>
+    <nav>
+      <a href="index.html">Book Search</a>
+      <a href="suggest.html">Book Suggestions</a>
+      <a href="reading-list.html" class="active">My Reading List</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>My Reading List</h2>
+    <p class="intro">Add, view, update and delete the books you want to read. Your list is saved on this computer and stays after you close the app.</p>
+
+    <!-- Summary numbers (calculated by JavaScript) -->
+    <div class="summary">
+      <div><strong id="sumBooks">0</strong>Books in list</div>
+      <div><strong id="sumFinished">0</strong>Books finished</div>
+      <div><strong id="sumPagesRead">0</strong>Pages read</div>
+      <div><strong id="sumTimeLeft">0</strong>Reading time left</div>
+    </div>
+
+    <!-- CREATE / UPDATE form -->
+    <section class="box">
+      <h3 id="formTitle">Add a book manually</h3>
+      <form id="bookForm" novalidate>
+        <div class="form-row">
+          <div class="field wide">
+            <label for="title">Book title *</label>
+            <input type="text" id="title" maxlength="150" placeholder="e.g. The Hobbit">
+          </div>
+          <div class="field">
+            <label for="bookAuthor">Author</label>
+            <input type="text" id="bookAuthor" maxlength="80" placeholder="e.g. J.R.R. Tolkien">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="pages">Total pages *</label>
+            <input type="number" id="pages" min="1" max="10000" step="1">
+            <small>1 - 10000</small>
+          </div>
+          <div class="field">
+            <label for="currentPage">Current page</label>
+            <input type="number" id="currentPage" min="0" step="1" value="0">
+            <small>Page you are on now</small>
+          </div>
+          <div class="field">
+            <label for="status">Status *</label>
+            <select id="status">
+              <option value="plan">Plan to Read</option>
+              <option value="reading">Reading</option>
+              <option value="finished">Finished</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="myRating">My rating</label>
+            <select id="myRating">
+              <option value="">Not rated</option>
+              <option value="5">★★★★★ (5)</option>
+              <option value="4">★★★★ (4)</option>
+              <option value="3">★★★ (3)</option>
+              <option value="2">★★ (2)</option>
+              <option value="1">★ (1)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field wide">
+            <label for="notes">Notes</label>
+            <input type="text" id="notes" maxlength="300" placeholder="e.g. Borrowed from the library">
+          </div>
+          <div>
+            <button type="submit" class="primary" id="saveBtn">Add Book</button>
+            <button type="button" id="cancelBtn" class="hidden">Cancel Edit</button>
+          </div>
+        </div>
+      </form>
+      <div id="formMessage" class="message"></div>
+    </section>
+
+    <!-- READ: the saved list -->
+    <section class="box">
+      <h3>Saved books</h3>
+      <div class="list-toolbar">
+        <div>
+          <label for="filter"><strong>Show:</strong></label>
+          <select id="filter">
+            <option value="all">All books</option>
+            <option value="plan">Plan to Read</option>
+            <option value="reading">Reading</option>
+            <option value="finished">Finished</option>
+          </select>
+        </div>
+        <small>Reading time left is based on 250 words/page at 200 words/minute.</small>
+      </div>
+      <div id="listMessage" class="message"></div>
+      <table class="list">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Book</th>
+            <th>Status</th>
+            <th>Progress</th>
+            <th>Time left</th>
+            <th>My rating</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="listBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 iMyBook | DCS 4B | BCS2502-047
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/readinglist.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self';
+                 img-src 'self' https://covers.openlibrary.org https://*.archive.org;
+                 connect-src https://openlibrary.org">
+  <title>iMyBook - Book Suggestions</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to iMyBook</h1>
+    <p class="tagline">Your Reading Book Application</p>
+    <nav>
+      <a href="index.html">Book Search</a>
+      <a href="suggest.html" class="active">Book Suggestions</a>
+      <a href="reading-list.html">My Reading List</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Book Suggestions</h2>
+    <p class="intro">Choose a genre, the book length you like and (optional) a favourite author. iMyBook will pick the most suitable books for you.</p>
+
+    <section class="box">
+      <h3>1. Tell us what you like</h3>
+      <form id="suggestForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="genre">Genre / Category *</label>
+            <select id="genre">
+              <option value="">-- Choose a genre --</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="scifi">Science Fiction</option>
+              <option value="mystery">Mystery &amp; Detective</option>
+              <option value="romance">Romance</option>
+              <option value="horror">Horror</option>
+              <option value="history">History</option>
+              <option value="biography">Biography</option>
+              <option value="selfhelp">Self-Help</option>
+              <option value="programming">Programming / Computers</option>
+              <option value="children">Children's Books</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="length">Book length</label>
+            <select id="length">
+              <option value="any">Any length</option>
+              <option value="short">Short (under 200 pages)</option>
+              <option value="medium">Medium (200 - 400 pages)</option>
+              <option value="long">Long (over 400 pages)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="priority">What matters most?</label>
+            <select id="priority">
+              <option value="rating">Highest reader rating</option>
+              <option value="popular">Most popular (most editions)</option>
+              <option value="newest">Newest books</option>
+              <option value="classic">Classic books (before 1950)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="author">Favourite author (optional)</label>
+            <input type="text" id="author" placeholder="e.g. Rick Riordan" maxlength="60">
+          </div>
+          <div>
+            <button type="submit" class="primary" id="suggestBtn">Suggest Books</button>
+          </div>
+        </div>
+      </form>
+      <div id="suggestMessage" class="message"></div>
+      <p id="loading" class="loading">Finding the best books for you...</p>
+    </section>
+
+    <section class="box hidden" id="suggestBox">
+      <h3 id="suggestTitle">2. Suggested books for you</h3>
+      <div class="book-grid" id="suggestions"></div>
+    </section>
+
+    <section class="box">
+      <h3>3. Previous suggestions (saved in Local Storage)</h3>
+      <div id="historyMessage" class="message"></div>
+      <div id="history"></div>
+      <p><button type="button" id="clearHistoryBtn" class="danger small">Clear all history</button></p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 iMyBook | DCS 4B | BCS2502-047
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/suggest.js"></script>
+</body>
+</html>

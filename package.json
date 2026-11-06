@@ -1,0 +1,19 @@
+{
+  "name": "imybook",
+  "version": "1.0.0",
+  "description": "iMyBook - Reading Book Desktop Application built with Electron (CSC2923 Final Project)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager . iMyBook --platform=win32 --arch=x64 --out=dist --overwrite"
+  },
+  "author": "DCS 4B - BCS2502-047",
+  "license": "MIT",
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "33.4.11"
+  },
+  "allowScripts": {
+    "electron@33.4.11": true
+  }
+}

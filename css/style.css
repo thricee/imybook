@@ -1,0 +1,392 @@
+/* ==========================================================
+   iMyBook - style.css
+   One shared stylesheet so every page looks the same.
+   Simple layout: coloured header, light grey body, dark footer.
+   ========================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  color: #333333;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;   /* keeps footer at the bottom */
+}
+
+/* ---------- Header + navigation ---------- */
+header {
+  background-color: #c4bd86;   /* khaki header colour */
+  color: #ffffff;
+  text-align: center;
+  padding: 22px 10px 16px;
+}
+
+header h1 {
+  margin: 0 0 6px;
+  font-size: 32px;
+}
+
+header p.tagline {
+  margin: 0 0 12px;
+  font-size: 14px;
+}
+
+nav a {
+  color: #3d2c8d;
+  font-size: 17px;
+  margin: 0 8px;
+}
+
+nav a.active {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* ---------- Main content ---------- */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+  margin: 10px 0 6px;
+}
+
+p.intro {
+  text-align: center;
+  margin: 0 0 18px;
+}
+
+section.box {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+}
+
+section.box h3 {
+  margin-top: 0;
+  font-size: 18px;
+  border-bottom: 2px solid #c4bd86;
+  padding-bottom: 6px;
+}
+
+/* ---------- Forms ---------- */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  flex: 1;
+}
+
+.field label {
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.field small {
+  color: #777777;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+input, select, textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 6px;
+  border: 1px solid #aaaaaa;
+}
+
+input.invalid, select.invalid {
+  border: 2px solid #c0392b;
+  background-color: #fdecea;
+}
+
+button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 6px 14px;
+  cursor: pointer;
+  border: 1px solid #555555;
+  background-color: #efefef;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+button.primary {
+  background-color: #8a8250;
+  color: #ffffff;
+  border-color: #6f6840;
+}
+
+button.primary:hover {
+  background-color: #6f6840;
+}
+
+button.danger {
+  background-color: #c0392b;
+  color: #ffffff;
+  border-color: #962d22;
+}
+
+button.small {
+  font-size: 12px;
+  padding: 3px 8px;
+}
+
+/* ---------- Feedback messages ---------- */
+.message {
+  padding: 10px 14px;
+  margin: 10px 0;
+  border-left: 5px solid;
+  display: none;           /* hidden until JavaScript shows it */
+}
+
+.message.show { display: block; }
+.message.success { background-color: #eaf7ea; border-color: #2e8b3d; color: #1f5e29; }
+.message.error   { background-color: #fdecea; border-color: #c0392b; color: #8e2a20; }
+.message.info    { background-color: #eaf1fb; border-color: #2c6db5; color: #1d4a7c; }
+.message.warning { background-color: #fff6e0; border-color: #d69e00; color: #7a5a00; }
+
+.loading {
+  text-align: center;
+  font-style: italic;
+  color: #666666;
+  display: none;
+}
+
+.loading.show { display: block; }
+
+/* ---------- Book result cards ---------- */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.book-card {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-card img, .no-cover {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  margin: 0 auto 8px;
+  border: 1px solid #cccccc;
+}
+
+.no-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee;
+  color: #999999;
+  font-size: 12px;
+}
+
+.book-card h4 {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.book-card p {
+  font-size: 12px;
+  margin: 2px 0;
+  color: #555555;
+}
+
+.book-card .reason {
+  background-color: #f7f5e8;
+  border: 1px dashed #c4bd86;
+  padding: 5px;
+  margin: 6px 0;
+  text-align: left;
+}
+
+.book-card .actions {
+  margin-top: auto;
+  padding-top: 8px;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- Book details panel ---------- */
+.details {
+  display: flex;
+  gap: 20px;
+}
+
+.details img, .details .no-cover {
+  width: 140px;
+  height: 210px;
+  margin: 0;
+}
+
+.details table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.details td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #eeeeee;
+  vertical-align: top;
+}
+
+.details td:first-child {
+  font-weight: bold;
+  width: 160px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #f1efdf;
+  border: 1px solid #d8d2a6;
+  padding: 1px 6px;
+  margin: 2px;
+  font-size: 12px;
+}
+
+/* ---------- Calculation result ---------- */
+.result-table {
+  border-collapse: collapse;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.result-table td {
+  border: 1px solid #dddddd;
+  padding: 7px 10px;
+}
+
+.result-table td:first-child {
+  background-color: #f7f5e8;
+  font-weight: bold;
+  width: 45%;
+}
+
+/* ---------- Reading list table ---------- */
+table.list {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+table.list th {
+  background-color: #8a8250;
+  color: #ffffff;
+  padding: 8px;
+  text-align: left;
+  font-size: 13px;
+}
+
+table.list td {
+  padding: 7px 8px;
+  border-bottom: 1px solid #e3e3e3;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+table.list tr:nth-child(even) td {
+  background-color: #fafafa;
+}
+
+.progress {
+  background-color: #e5e5e5;
+  height: 10px;
+  width: 110px;
+  margin-top: 3px;
+}
+
+.progress div {
+  background-color: #2e8b3d;
+  height: 100%;
+}
+
+.status {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.plan { color: #2c6db5; }
+.status.reading { color: #d69e00; }
+.status.finished { color: #2e8b3d; }
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.summary div {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 10px;
+}
+
+.summary strong {
+  display: block;
+  font-size: 22px;
+  color: #6f6840;
+}
+
+.empty {
+  text-align: center;
+  color: #777777;
+  padding: 18px;
+}
+
+.hidden { display: none; }
+
+/* ---------- Footer ---------- */
+footer {
+  background-color: #333333;
+  color: #ffffff;
+  text-align: center;
+  padding: 18px;
+  font-size: 15px;
+}
+
+.field.narrow { max-width: 180px; }
+.field.wide { flex: 3; }
+.details-info { flex: 1; }
+.history-item { border-bottom: 1px solid #eeeeee; padding: 4px 0; }
+.history-item p { margin: 6px 0; }
+.history-item ol { margin: 0 0 8px; font-size: 13px; }
+.list-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px; }
+.cell-cover img, .cell-cover .no-cover { width: 40px; height: 60px; margin: 0; font-size: 9px; }
+.note { font-size: 12px; color: #666666; margin-top: 4px; }
