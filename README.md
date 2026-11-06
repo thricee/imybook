@@ -13,8 +13,6 @@ npm start
 
 To build a Windows `.exe`: `npm run package` (output goes to `dist/iMyBook-win32-x64/iMyBook.exe`).
 
-Full beginner steps are in [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md).
-
 ## Pages
 
 | Page | File | Purpose |
