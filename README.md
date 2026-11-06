@@ -1,7 +1,6 @@
 # iMyBook – Reading Book Application
 
 CSC2923 Object Oriented Programming – Final Project
-DCS 4B | Student ID: BCS2502-047
 
 iMyBook is an Electron desktop application that helps readers find books, get book suggestions, calculate how long a book takes to read, and manage their own reading list.
 
